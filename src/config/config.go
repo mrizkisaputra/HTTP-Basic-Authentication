@@ -12,7 +12,7 @@ var v = viper.New()
 func init() {
 	v.SetConfigName("config")
 	v.SetConfigType("env")
-	v.AddConfigPath("../config")
+	v.AddConfigPath("./src/config")
 }
 
 func GetConnectionDB() *sql.DB {
@@ -22,7 +22,7 @@ func GetConnectionDB() *sql.DB {
 	}
 
 	dsn := fmt.Sprintf(
-		"%s:%s@tcp(%s:%s)/%s",
+		"%s:%s@tcp(%s:%s)/%s?parseTime=true",
 		v.GetString("DB_USER"),
 		v.GetString("DB_PASS"),
 		v.GetString("DB_HOST"),
